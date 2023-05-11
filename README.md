@@ -12,6 +12,14 @@ The data was acquired from Kaggle. Here is the link to the data set :
 
 https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
 
+## How does it work?
+
+-
+
+## How to run
+
+-
+
 ## Phases for project
 
 This project is in a very early stage.
