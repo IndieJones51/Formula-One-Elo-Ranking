@@ -1,6 +1,6 @@
 # Finding the greatest Formula One Driver using Elo Ranking
 
-Amongst fans of Formula One, it is hotly disputed who is the greatest Formula One driver of all time. Some think it's modern greats like Hamilton or Vettel, others think old-school drivers like Schumacher or Prost are the greatest. This project aims to settle this debate once and for all by using the same ranking system used for the chess, the ELO ranking system.
+Amongst fans of Formula One, it is hotly disputed who is the greatest Formula One driver of all time. Some think it's modern greats like Hamilton or Vettel, others think old-school drivers like Schumacher or Prost are the greatest. This project aims to settle this debate once and for all by using the ELO ranking formula.
 
 ## What is ELO Ranking?
 
@@ -14,10 +14,16 @@ https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
 
 ## Phases for project
 
-1. Acquire Dataset.
+This project is in a very early stage.
+
+1. Acquire Relevant Features from Dataset. (In Progress)
 
 2. Implement ELO scoring formula.
 
-3. Add Qualifying results as extra feature.
+3. Analyse and write-up initial findings.
 
-4. Add Fastest Lap 
+3. Add Qualifying results as Feature.
+
+4. Add Fastest Lap Ranking as Feature.
+
+5. Create findings into inveractive website. (To be defined)
