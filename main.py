@@ -13,9 +13,6 @@ def probability_of_win(current, opponent):
     return 1 / (1 + 10 ** ((opponent - current) / 400))
 
 
-def updated_score(score):
-
-    return score + k_factor(score) * ()
 
 drivers_df = pd.read_csv("data/drivers.csv")
 drivers_df = drivers_df[['driverId','driverRef','surname']]
@@ -32,6 +29,9 @@ results_df = pd.merge(results_df, constructors_df, how='left', on='constructorId
 results_df['Elo'] = 1000
 
 drivers = results_df['driverId'].value_counts().keys()
+
+results_df.to_excel(r'results.xlsx')
+
 
 
 for driver in drivers:
@@ -53,15 +53,21 @@ for driver in drivers:
                 current_elo = race_df['Elo'].values[0]
                 opponent_elo = race_df['Elo'].values[0]
 
-                current_probability = Elo.probability_of_win
+                current_probability = probability_of_win(current_elo, opponent_elo)
                 opponent_probability = 1 - current_probability
 
+                if race_df['positionOrder'].values[0] < opponent_df['positionOrder'].values[0]:
+                    current_elo = current_elo + (k_factor(current_elo) * (1 - current_probability))
+                else:
+                    current_elo = current_elo + (k_factor(current_elo) * (0 - current_probability))
 
-
+                results_df['Elo'][(results_df['driverId'] == driver) & (results_df['raceId'] == race) & (results_df['constructorId'] == team)] = current_elo
+                print(results_df['Elo'][(results_df['driverId'] == driver) & (results_df['raceId'] == race) & (results_df['constructorId'])])
+                break
                 print(race_df['surname'].values[0], race_df['positionOrder'].values[0], race_df['Elo'].values[0], opponent_df['surname'].values[0], opponent_df['positionOrder'].values[0], race_df['Elo'].values[0])
 
 
 
-
+results_df.to_excel(r'results.xlsx')
 
 
