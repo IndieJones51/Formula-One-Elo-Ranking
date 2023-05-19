@@ -34,16 +34,17 @@ results_df = results_df.sort_values(by=['driverId'], axis=0, inplace=False)
 driver_dataframes = [results_df[results_df['driverId'] == id] for id in results_df['driverId'].unique()]
 driver_scores = {"name": results_df['driverRef'].unique(),
                  "elo_score": [1000 for x in range(len(results_df['driverRef'].unique()))],
-                 "wins": [0 for x in range(len(results_df['driverRef'].unique()))],
-                 "losses": [0 for x in range(len(results_df['driverRef'].unique()))]
                  }
 
 driver_scores = pd.DataFrame(data=driver_scores['elo_score'], index=driver_scores['name'], columns=['elo_score'])
 
+print(driver_scores.head())
 
 for driver in driver_dataframes:
 
     current_name = driver['driverRef'].values[0]
+    wins = 0
+    losses = 0
 
     for race in driver['raceId'].unique():
         current_driver = driver[driver['raceId'] == race]
@@ -58,11 +59,9 @@ for driver in driver_dataframes:
         if len(opponent_driver) != 0:
 
             opponent_elo = driver_scores.loc[[opponent_driver['driverRef'].values[0]]].values[0]
-
             print(current_driver['driverRef'].values[0], "Vs", opponent_driver['driverRef'].values[0])
 
-
-            if current_driver['positionOrder'].values[0] > opponent_driver['positionOrder'].values[0]:
+            if current_driver['positionOrder'].values[0] < opponent_driver['positionOrder'].values[0]:
 
                 current_elo = current_elo + (k_factor(current_elo) * (1 - probability_of_win(current_elo, opponent_elo)))
                 opponent_elo = opponent_elo + (k_factor(opponent_elo) * (0 - probability_of_win(opponent_elo, current_elo)))
