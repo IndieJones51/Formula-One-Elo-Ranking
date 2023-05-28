@@ -24,14 +24,14 @@ https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
 
 This project is in a very early stage.
 
-1. Acquire Relevant Features from Dataset. (In Progress)
+1. Acquire Relevant Features from Dataset. (Complete)
 
-2. Implement ELO scoring formula.
+2. Implement ELO scoring formula. (Complete)
 
-3. Analyse and write-up initial findings.
+3. Analyse and write-up initial findings. (In progress)
 
 3. Add Qualifying results as Feature.
 
 4. Add Fastest Lap Ranking as Feature.
 
-5. Create findings into inveractive website. (To be defined)
+5. Create findings into interactive website.
