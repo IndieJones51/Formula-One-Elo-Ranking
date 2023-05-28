@@ -61,30 +61,32 @@ for driver in driver_dataframes:
             opponent_elo = driver_scores.loc[[opponent_driver['driverRef'].values[0]]].values[0]
             print(current_driver['driverRef'].values[0], "Vs", opponent_driver['driverRef'].values[0])
 
-
             if current_driver['positionText'].values[0] < opponent_driver['positionText'].values[0]:
 
-                current_elo = current_elo + (k_factor(current_elo) * (1 - probability_of_win(current_elo, opponent_elo)))
-                opponent_elo = opponent_elo + (k_factor(opponent_elo) * (0 - probability_of_win(opponent_elo, current_elo)))
+                current_elo = current_elo + (
+                            k_factor(current_elo) * (1 - probability_of_win(current_elo, opponent_elo)))
+                opponent_elo = opponent_elo + (
+                            k_factor(opponent_elo) * (0 - probability_of_win(opponent_elo, current_elo)))
 
                 driver_scores.at[current_name, 'elo_score'] = current_elo
                 driver_scores.at[opponent_driver['driverRef'].values[0], 'elo_score'] = opponent_elo
 
-                print(current_driver['positionText'].values[0])
-                print(opponent_driver['positionText'].values[0])
+            elif (current_driver['positionText'].values[0] == "R" or current_driver['positionText'].values[0] == "D") and (opponent_driver['positionText'].values[0] == 'R' or opponent_driver['positionText'].values[0] == "D"):
 
-            elif current_driver['positionText'].values[0] == "R" and opponent_driver['positionText'].values[0] == 'R':
-
-                current_elo = current_elo + (k_factor(current_elo) * (0.5 - probability_of_win(current_elo, opponent_elo)))
-                opponent_elo = opponent_elo + (k_factor(opponent_elo) * (0.5 - probability_of_win(opponent_elo, current_elo)))
+                current_elo = current_elo + (
+                            k_factor(current_elo) * (0.5 - probability_of_win(current_elo, opponent_elo)))
+                opponent_elo = opponent_elo + (
+                            k_factor(opponent_elo) * (0.5 - probability_of_win(opponent_elo, current_elo)))
 
                 driver_scores.at[current_name, 'elo_score'] = current_elo
                 driver_scores.at[opponent_driver['driverRef'].values[0], 'elo_score'] = opponent_elo
 
             else:
 
-                current_elo = current_elo + (k_factor(current_elo) * (0 - probability_of_win(current_elo, opponent_elo)))
-                opponent_elo = opponent_elo + (k_factor(opponent_elo) * (1 - probability_of_win(opponent_elo, current_elo)))
+                current_elo = current_elo + (
+                            k_factor(current_elo) * (0 - probability_of_win(current_elo, opponent_elo)))
+                opponent_elo = opponent_elo + (
+                            k_factor(opponent_elo) * (1 - probability_of_win(opponent_elo, current_elo)))
 
                 driver_scores.at[current_name, 'elo_score'] = current_elo
                 driver_scores.at[opponent_driver['driverRef'].values[0], 'elo_score'] = opponent_elo
